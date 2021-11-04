@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>Tabla</title>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script>
+      var axios = require("axios")
+    // when life is settled, load up the fun stuff
+    document.addEventListener('DOMContentLoaded', function () {
+      new Vue({
+        el: '#app',
+        // define data - initial display text
+        data: {
+          m1: "You got to let me know",
+            db:[{
+                "Nombre": "juan",
+                "DNI": 12345,
+            },
+                {
+                "Nombre": "carlos",
+                "DNI": 14545,
+            }
+            ]
+        },created() {
+            var that = this;
+            that.getinfo();
+            
+        },
+          methods:{
+              
+              getinfo(){
+                  var that = this,
+                  var config = {
+                  method: 'get',
+                  url: '0.0.0.0/',
+                  headers: { }
+                };
+
+                axios(config)
+                .then(function (response) {
+                    that.db=response.data
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+                                  console.log("prueba")
+              }
+          }
+          
+      })
+    })
+  </script>
+	</head>
+	<body>
+        <div id="app"> 
+    <img src="descarga.png" width="100" height="50">
+	<h3>listado de Clientes </h3>
+    <h3 v-for="i in db">persona={{i.Nombre}},DNI={{i.DNI}}</h3>
+
+        <form >
+       
+            
+    
+        </form>
+        <script type="text/javascript" src="form.js"></script>
+        
+        </div>
+        
+        
+       
+        
+	</body>
+</html>

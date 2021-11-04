@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>Registro</title>
+        <meta charset="utf-8">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+        <script>
+      //var axios = require("axios")
+    // when life is settled, load up the fun stuff
+    document.addEventListener('DOMContentLoaded', function () {
+      new Vue({
+        el: '#app',
+        // define data - initial display text
+        data: {
+            DNI:"",
+            Nombre:"",
+          m1: "You got to let me know",
+            db:[{
+                "Nombre": "juan",
+                "DNI": 12345,
+            },
+                {
+                "Nombre": "carlos",
+                "DNI": 14545,
+            }
+            ]
+        },created() {
+            var that = this;
+            that.getinfo();
+            
+        },
+          methods:{
+              
+              getinfo(){
+                  var that = this;
+                  var n = that.Nombre;
+                  var d = that.DNI;
+                  var config = {
+                  method: 'put',
+                  url: `0.0.0.0/?Nombre=${n}&DNI=${d}`,
+                  headers: { }
+                };
+
+axios(config)
+.then(function (response) {
+ location.href=web2.html
+})
+.catch(function (error) {
+  console.log(error);
+});
+                
+                console.log("prueba")
+              }
+          }
+          
+      })
+    })
+  </script>
+	</head>
+	<body>
+        <div id="app">
+        <img src="descarga.png" width="100" height="50">
+	Registro de clientes
+        <br/><br/>
+        {{Nombre}}{{DNI}}
+        Nombre 
+            <input type="text" v-model="Nombre">    
+        <br/><label for="" class="formulario__label"></label>
+        <br/>
+        DNI 
+            <input type="text" v-model="DNI">    
+        <br/><label for=""
+               class="formulario__label"></label>
+            <br/>
+            <button type="buton" v-on:click="captura()">Enviar</button>
+    
+        
+        
+         </div>
+        
+      
+	</body>
+</html>
